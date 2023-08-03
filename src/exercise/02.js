@@ -5,6 +5,7 @@ import * as React from 'react'
 import {useCombobox} from '../use-combobox'
 import {getItems} from '../filter-cities'
 import {useForceRerender} from '../utils'
+import {useMemo} from 'react'
 
 function Menu({
   items,
@@ -56,12 +57,12 @@ function ListItem({
   )
 }
 
-function App() {
+function App(factory, deps) {
   const forceRerender = useForceRerender()
   const [inputValue, setInputValue] = React.useState('')
 
   // 🐨 wrap getItems in a call to `React.useMemo`
-  const allItems = getItems(inputValue)
+  const allItems = useMemo(() => getItems(inputValue),[inputValue])
   const items = allItems.slice(0, 100)
 
   const {
