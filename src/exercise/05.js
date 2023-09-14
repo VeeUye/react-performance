@@ -9,6 +9,7 @@ import {
   updateGridState,
   updateGridCellState,
 } from '../utils'
+import { useMemo } from "react";
 
 const AppStateContext = React.createContext()
 
@@ -39,7 +40,7 @@ function AppProvider({children}) {
     grid: initialGrid,
   })
   // 🐨 memoize this value with React.useMemo
-  const value = [state, dispatch]
+  const value = useMemo(() => [state, dispatch], [state, dispatch] )
   return (
     <AppStateContext.Provider value={value}>
       {children}
