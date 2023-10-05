@@ -131,7 +131,8 @@ function Cell({state: cell, row, column}) {
     </button>
   )
 }
-Cell = withStateSlice(Cell, (state, {row, column}) => state.grid[row][column])
+Cell = withStateSlice(Cell, (state, {row, column}) => state.grid[row][column]
+)
 
 function DogNameInput() {
   const [state, dispatch] = useDogState()
